@@ -10,11 +10,12 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.views.decorators.cache import cache_page
 
 from app_news import forms, views
-from app_news.views import CreateNews, MainPage
+from app_news.views import CreateNews, MainPage, UpdateNews
 
 urlpatterns = [
     path('', MainPage.as_view(), name='index'),
     path('create_news/', cache_page(3600)(CreateNews.as_view()), name='create_news'),
+    path('update_news/<int:pk>/', UpdateNews.as_view(), name='update_news'),
     path('contact/', views.contact, name='contact'),
     path('about/', views.about, name='about'),
     path('login/',

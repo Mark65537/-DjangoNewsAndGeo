@@ -46,3 +46,14 @@ input[type="checkbox"].input-validation-error {
     max-height: 200px;
     object-fit: contain;
 }
+
+.news {
+    /* display: block; */
+    float: left;
+    color: #000 !important;
+    text-decoration: none;
+    width: 100%;
+    padding-bottom: 17px;
+    border-bottom: 2px solid #ececec;
+    margin-bottom: 29px;
+}

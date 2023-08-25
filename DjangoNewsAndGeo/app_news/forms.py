@@ -13,6 +13,7 @@ class NewsForm(forms.ModelForm):
         model = News
         fields = 'title', 'description', 'image'
 
+
 class BootstrapAuthenticationForm(AuthenticationForm):
     """Authentication form which uses boostrap CSS."""
     username = forms.CharField(max_length=254,

@@ -43,6 +43,20 @@ class CreateNews(generic.CreateView):
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
 
+
+class UpdateNews(generic.UpdateView):
+    """Представление, для обновления новости"""
+    model = News
+    form_class = NewsForm
+    template_name = 'site/update_news.html'
+
+    #override form_valid method
+    def form_valid(self, form):
+        # Получаем объект новости, который мы обновляем
+        form.save()
+        return super().form_valid(form)   
+
+
 def contact(request):
     """Renders the contact page."""
     assert isinstance(request, HttpRequest)

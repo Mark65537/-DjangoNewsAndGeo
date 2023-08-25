@@ -1,0 +1,13 @@
+{% extends 'site/layout.html' %}
+
+{% load static %}
+{% block title %}Обновить{% endblock %}
+
+{% block content %}
+<h1>Обновить</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-primary btn-block" type="submit" value="Update">Обновить</button>
+</form>
+{% endblock %}

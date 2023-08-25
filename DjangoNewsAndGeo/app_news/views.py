@@ -11,7 +11,7 @@ def home(request):
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/index.html',
+        'site/index.html',
         {
             'title':'Home Page',
             'year':datetime.now().year,
@@ -23,7 +23,7 @@ def contact(request):
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/contact.html',
+        'site/contact.html',
         {
             'title':'Contact',
             'message':'Your contact page.',

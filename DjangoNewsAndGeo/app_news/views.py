@@ -32,10 +32,15 @@ class CreateNews(generic.CreateView):
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
-        self.object.author = self.request.user.profile
+
+        if self.request.user.is_authenticated:
+            self.object.author = self.request.user.profile
+            self.request.user.profile.news_quantity += 1
+            self.request.user.profile.save()
+        else:
+            self.object.author = self.request.META['REMOTE_ADDR']  # Устанавливаем автора как IP-адрес текущего пользователя
+
         self.object.save()
-        self.request.user.profile.news_quantity += 1
-        self.request.user.profile.save()
         return HttpResponseRedirect(self.get_success_url())
 
 def contact(request):

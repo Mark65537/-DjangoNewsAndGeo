@@ -3,7 +3,7 @@
 {% block title %}"Создание новости"{% endblock %}
 {% block content %}
 
-<h1>"Создание новости"</h1>
+<h1>Создание новости</h1>
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}

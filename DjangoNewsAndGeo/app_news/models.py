@@ -9,11 +9,12 @@ class News(models.Model):
     """Модель новости"""
     title = models.CharField(max_length=200, verbose_name='Title')
     description = models.TextField(verbose_name='Description')
-    image = models.ImageField(upload_to='images/', blank=True)
+    image = models.ImageField(upload_to='static\images', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
+        db_table="News"
         verbose_name = 'News'
         verbose_name_plural = 'News'
 
@@ -21,4 +22,4 @@ class News(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('news_detail', args=[str(self.pk)])
+        return reverse('index')

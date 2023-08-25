@@ -6,6 +6,13 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.utils.translation import gettext_lazy as _
 
+from app_news.models import News
+
+class NewsForm(forms.ModelForm):
+    class Meta:
+        model = News
+        fields = 'title', 'description', 'image'
+
 class BootstrapAuthenticationForm(AuthenticationForm):
     """Authentication form which uses boostrap CSS."""
     username = forms.CharField(max_length=254,

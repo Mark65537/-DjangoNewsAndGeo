@@ -57,6 +57,7 @@
     <Folder Include="DjangoNewsAndGeo\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app_news\templates\site\create_news.html" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
     <Content Include="app_news\static\app\content\bootstrap.css" />

@@ -1,0 +1,13 @@
+{% extends 'site/layout.html' %}
+{% load static %}
+{% block title %}"Создание новости"{% endblock %}
+{% block content %}
+
+<h1>"Создание новости"</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-primary btn-block" type="submit" value="save">Опубликовать</button>
+</form>
+
+{% endblock %}

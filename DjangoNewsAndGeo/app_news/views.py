@@ -3,20 +3,40 @@ Definition of views.
 """
 
 from datetime import datetime
+
 from django.shortcuts import render
 from django.http import HttpRequest
+from django.views import generic
+from django.http import HttpResponseRedirect
 
-def home(request):
-    """Renders the home page."""
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'site/index.html',
-        {
-            'title':'Home Page',
-            'year':datetime.now().year,
-        }
-    )
+from app_news.forms import NewsForm
+from app_news.models import News
+
+class MainPage(generic.ListView):
+    """Представление главной страницы, которая отображает список всех новостей"""
+    model = News
+    context_object_name = 'news_list'
+    template_name = 'site/index.html'
+    queryset = News.objects.all().order_by('-updated_at')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+
+class CreateNews(generic.CreateView):
+    """Представление для создания новости"""
+    model = News
+    form_class = NewsForm
+    template_name = 'site/create_news.html'
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.author = self.request.user.profile
+        self.object.save()
+        self.request.user.profile.news_quantity += 1
+        self.request.user.profile.save()
+        return HttpResponseRedirect(self.get_success_url())
 
 def contact(request):
     """Renders the contact page."""
@@ -36,7 +56,7 @@ def about(request):
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/about.html',
+        'site/about.html',
         {
             'title':'About',
             'message':'Your application description page.',

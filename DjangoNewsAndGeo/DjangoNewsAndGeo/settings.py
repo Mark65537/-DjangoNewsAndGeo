@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
+from datetime import timedelta
 import os
 import posixpath
 
@@ -39,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_summernote',
+    'constance',
+    'constance.backends.database',
 ]
 
 # Middleware framework
@@ -119,6 +122,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
+# SUMMERNOTE
 SUMMERNOTE_CONFIG = { 'iframe': True, 'summernote': { 'toolbar': [ ['style', ['style']], 
                        ['font', ['bold', 'italic', 'underline', 'clear']], 
                        ['fontname', ['fontname']], ['color', ['color']], 
@@ -126,4 +130,39 @@ SUMMERNOTE_CONFIG = { 'iframe': True, 'summernote': { 'toolbar': [ ['style', ['s
                        ['insert', ['link', 'picture', 'video']], 
                        ['view', ['fullscreen', 'codeview', 'help']], ], 
                        'width': '100%', 'height': '400px', }, }
+
+
+# Constance config
+CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend' 
+CONSTANCE_CONFIG = {
+    'EMAIL_RECIPIENTS': ('test@mail.ru', 'Список адресатов через пробел'),
+    'EMAIL_SUBJECT': ('Новости за сегодня', 'Тема сообщения'),
+    'EMAIL_TEXT': ('Ознакомьтесь с последними новостями', 'Текст сообщения'),
+    'EMAIL_SEND_TIME': (timedelta(seconds=20), 'Время отправки'),
+}
+CONSTANCE_CONFIG_FIELDSETS = {
+    'Настройки отправки email с новостями за день': ('EMAIL_RECIPIENTS', 'EMAIL_SUBJECT', 'EMAIL_TEXT', 'EMAIL_SEND_TIME'),
+}
+
+# Celery config
+CELERY_BROKER_URL = 'sqla+sqlite:///../db.sqlite3'  # URL брокера сообщений Celery, При развертывании в production рекомендуется использовать более мощные и масштабируемые брокеры сообщений, такие как RabbitMQ или Redis.
+CELERY_RESULT_BACKEND = 'db+sqlite:///../db.sqlite3'  # URL бэкэнда для хранения результатов задач Celery
+
+# Дополнительные настройки Celery...
+#CELERY_BEAT_SCHEDULE = { 
+#    'send_news_email_task': { 
+#        'task': 'app_news.tasks.send_news_email',
+#        'schedule': timedelta(minutes=CONSTANCE_CONFIG['EMAIL_SEND_TIME']),
+#    },
+#}
+
+# Email config
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_PORT = os.getenv('EMAIL_PORT')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS=True
+EMAIL_USE_SSL=False
+
 

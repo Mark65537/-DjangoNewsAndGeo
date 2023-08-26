@@ -7,12 +7,15 @@ from datetime import datetime
 from django.shortcuts import render
 from django.http import HttpRequest
 from django.views import generic
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.core.files.storage import default_storage
 from django.urls import reverse_lazy
+from django.views.decorators.csrf import csrf_exempt
+
 
 from app_news.forms import NewsForm
 from app_news.models import News
+from app_news.tasks import send_news_email
 
 class MainPage(generic.ListView):
     """Представление главной страницы, которая отображает список всех новостей"""
@@ -75,6 +78,12 @@ class DeleteNews(generic.DeleteView):
     template_name = 'site/delete_news.html'
     success_url = reverse_lazy('index') # здесь используется reverse_lazy, таким образом пользователь не будет перенаправлен до тех пор, пока представление не завершит удаление записи из базы данных.
 
+@csrf_exempt
+def run_task(request):
+    if request.POST:
+        task_type = request.POST.get("type")
+        task = send_news_email.delay(int(task_type))
+        return JsonResponse({"task_id": task.id}, status=202)
 
 def contact(request):
     """Renders the contact page."""

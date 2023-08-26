@@ -37,10 +37,16 @@
     </Compile>
     <Compile Include="app_news\forms.py" />
     <Compile Include="app_news\models.py" />
+    <Compile Include="app_news\tasks.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app_news\tests.py" />
     <Compile Include="app_news\views.py" />
     <Compile Include="app_news\__init__.py" />
     <Compile Include="app_news\migrations\__init__.py" />
+    <Compile Include="DjangoNewsAndGeo\celery.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="manage.py" />
     <Compile Include="DjangoNewsAndGeo\__init__.py" />
     <Compile Include="DjangoNewsAndGeo\settings.py" />

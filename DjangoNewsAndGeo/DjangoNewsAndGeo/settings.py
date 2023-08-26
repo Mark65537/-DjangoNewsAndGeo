@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 from datetime import timedelta
+from celery.schedules import crontab
+
 import os
 import posixpath
 
@@ -145,16 +147,16 @@ CONSTANCE_CONFIG_FIELDSETS = {
 }
 
 # Celery config
-CELERY_BROKER_URL = 'sqla+sqlite:///../db.sqlite3'  # URL брокера сообщений Celery, При развертывании в production рекомендуется использовать более мощные и масштабируемые брокеры сообщений, такие как RabbitMQ или Redis.
-CELERY_RESULT_BACKEND = 'db+sqlite:///../db.sqlite3'  # URL бэкэнда для хранения результатов задач Celery
+CELERY_BROKER_URL = "redis://127.0.0.1:6379"  # URL брокера сообщений Celery, При развертывании в production рекомендуется использовать более мощные и масштабируемые брокеры сообщений, такие как RabbitMQ или Redis.
+CELERY_RESULT_BACKEND = "redis://127.0.0.1:6379"  # URL бэкэнда для хранения результатов задач Celery
 
 # Дополнительные настройки Celery...
-#CELERY_BEAT_SCHEDULE = { 
-#    'send_news_email_task': { 
-#        'task': 'app_news.tasks.send_news_email',
-#        'schedule': timedelta(minutes=CONSTANCE_CONFIG['EMAIL_SEND_TIME']),
-#    },
-#}
+CELERY_BEAT_SCHEDULE = { 
+    'send_news_email_task': { 
+        'task': 'app_news.tasks.send_news_email',
+        'schedule': crontab(minute="*/1"),
+    },
+}
 
 # Email config
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

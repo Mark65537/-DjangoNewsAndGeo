@@ -8,6 +8,7 @@ from django.shortcuts import render
 from django.http import HttpRequest
 from django.views import generic
 from django.http import HttpResponseRedirect
+from django.core.files.storage import default_storage
 
 from app_news.forms import NewsForm
 from app_news.models import News
@@ -52,7 +53,6 @@ class UpdateNews(generic.UpdateView):
 
     #override form_valid method
     def form_valid(self, form):
-        # Получаем объект новости, который мы обновляем
         form.save()
         return super().form_valid(form)   
 

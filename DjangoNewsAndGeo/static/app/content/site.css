@@ -48,12 +48,12 @@ input[type="checkbox"].input-validation-error {
 }
 
 .news {
-    /* display: block; */
     float: left;
     color: #000 !important;
     text-decoration: none;
     width: 100%;
     padding-bottom: 17px;
     border-bottom: 2px solid #ececec;
+    margin-top: 29px;
     margin-bottom: 29px;
 }

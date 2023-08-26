@@ -9,6 +9,7 @@ from django.http import HttpRequest
 from django.views import generic
 from django.http import HttpResponseRedirect
 from django.core.files.storage import default_storage
+from django.urls import reverse_lazy
 
 from app_news.forms import NewsForm
 from app_news.models import News
@@ -55,6 +56,13 @@ class UpdateNews(generic.UpdateView):
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)   
+
+
+class DeleteNews(generic.DeleteView):
+    """Представление, для удаления новости"""
+    model = News
+    template_name = 'site/delete_news.html'
+    success_url = reverse_lazy('index') # здесь используется reverse_lazy, таким образом пользователь не будет перенаправлен до тех пор, пока представление не завершит удаление записи из базы данных.
 
 
 def contact(request):

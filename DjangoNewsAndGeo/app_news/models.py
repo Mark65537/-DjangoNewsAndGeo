@@ -10,6 +10,7 @@ class News(models.Model):
     title = models.CharField(max_length=200, verbose_name='Title')
     description = models.TextField(verbose_name='Description')
     image = models.ImageField(upload_to='static\images', blank=True)
+    author = author = models.CharField(max_length=100, default='Anonymous', verbose_name='Author')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

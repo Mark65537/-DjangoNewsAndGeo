@@ -28,12 +28,12 @@
                             <p class="card-text">{{ item.description|truncatechars:255 }}</p>
                             <a href="" class="btn btn-primary">Подробнее</a>
                             <a href="{% url 'update_news' item.pk %}" class="btn btn-primary">Изменить</a>
-                            <a href="" class="btn btn-primary">Удалить</a>
+                            <a href="{% url 'delete_news' item.pk %}" class="btn btn-primary">Удалить</a>
                         </div>
                     </div>
                 </div>
                 <div class="card-footer text-muted">
-                    {{ item.created_at|date:"Y-m-d H:i" }}
+                    {{ item.created_at|date:"Y-m-d H:i" }} / {{ item.author }}
                 </div>
             </div>
             {% endfor %}

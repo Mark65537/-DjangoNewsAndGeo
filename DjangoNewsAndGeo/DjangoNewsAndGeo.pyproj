@@ -58,6 +58,7 @@
     <Folder Include="DjangoNewsAndGeo\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app_news\templates\site\delete_news.html" />
     <Content Include="app_news\templates\site\update_news.html" />
     <Content Include="static\images\big_items_icon.png" />
     <Content Include="static\images\common.png" />

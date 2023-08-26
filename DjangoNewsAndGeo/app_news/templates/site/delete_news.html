@@ -1,0 +1,14 @@
+{% extends 'site/layout.html' %}
+
+{% load static %}
+{% block title %}Удалить{% endblock %}
+
+{% block content %}
+<h1>Удалить</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p>Are you sure you want to delete <b>"{{ news.title }}"</b>?</p>
+    <button class="btn btn-danger" type="submit" value="Delete">Удалить</button>
+    <a href="/" class="btn btn-primary">Отмена</a>
+</form>
+{% endblock %}

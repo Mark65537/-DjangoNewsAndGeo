@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_summernote',
 ]
 
 # Middleware framework
@@ -117,4 +118,12 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+SUMMERNOTE_CONFIG = { 'iframe': True, 'summernote': { 'toolbar': [ ['style', ['style']], 
+                       ['font', ['bold', 'italic', 'underline', 'clear']], 
+                       ['fontname', ['fontname']], ['color', ['color']], 
+                       ['para', ['ul', 'ol', 'paragraph']], ['table', ['table']], 
+                       ['insert', ['link', 'picture', 'video']], 
+                       ['view', ['fullscreen', 'codeview', 'help']], ], 
+                       'width': '100%', 'height': '400px', }, }
 

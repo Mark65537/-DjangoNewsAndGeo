@@ -32,6 +32,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="app_news\admin.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app_news\forms.py" />
     <Compile Include="app_news\models.py" />
     <Compile Include="app_news\tests.py" />

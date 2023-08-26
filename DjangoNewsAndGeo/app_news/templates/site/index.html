@@ -25,7 +25,7 @@
                         {% endif %}
                         <div class="media-body">
                             <h3 class="card-title">{{ item.title }}</h3>
-                            <h4 class="card-text">{{ item.description|truncatechars:255 }}</h4>
+                            <h4 class="card-text">{{ item.description|truncatechars:255|safe }}</h4>
                             <a href="{% url 'detail_news' item.pk %}" class="btn btn-primary">Подробнее</a>
                             <a href="{% url 'update_news' item.pk %}" class="btn btn-primary">Изменить</a>
                             <a href="{% url 'delete_news' item.pk %}" class="btn btn-primary">Удалить</a>

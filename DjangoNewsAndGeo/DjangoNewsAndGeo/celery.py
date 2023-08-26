@@ -4,26 +4,26 @@ from celery.schedules import crontab
 from datetime import timedelta
 
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'DjangoNewsAndGeo.settings')# установает значение по умолчанию для среды DJANGO_SETTINGS_MODULE, чтобы Celery знала, как найти проект Django.
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'DjangoNewsAndGeo.settings')# СѓСЃС‚Р°РЅРѕРІР°РµС‚ Р·РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ РґР»СЏ СЃСЂРµРґС‹ DJANGO_SETTINGS_MODULE, С‡С‚РѕР±С‹ Celery Р·РЅР°Р»Р°, РєР°Рє РЅР°Р№С‚Рё РїСЂРѕРµРєС‚ Django.
 
-app = Celery('app_news') # создаем экземпляр Celery с именем core и поместили в переменную app.
-app.config_from_object('django.conf:settings', namespace='CELERY') # загрузили значения конфигурации Celery из объекта настроек из django.conf. Мы использовали namespace=«CELERY» для предотвращения коллизий с другими настройками Django. Таким образом, все настройки конфигурации для Celery должны начинаться с префикса CELERY_.
-app.autodiscover_tasks() # говорит Celery искать задания из приложений, определенных в settings.INSTALLED_APPS.
+app = Celery('app_news') # СЃРѕР·РґР°РµРј СЌРєР·РµРјРїР»СЏСЂ Celery СЃ РёРјРµРЅРµРј core Рё РїРѕРјРµСЃС‚РёР»Рё РІ РїРµСЂРµРјРµРЅРЅСѓСЋ app.
+app.config_from_object('django.conf:settings', namespace='CELERY') # Р·Р°РіСЂСѓР·РёР»Рё Р·РЅР°С‡РµРЅРёСЏ РєРѕРЅС„РёРіСѓСЂР°С†РёРё Celery РёР· РѕР±СЉРµРєС‚Р° РЅР°СЃС‚СЂРѕРµРє РёР· django.conf. РњС‹ РёСЃРїРѕР»СЊР·РѕРІР°Р»Рё namespace=В«CELERYВ» РґР»СЏ РїСЂРµРґРѕС‚РІСЂР°С‰РµРЅРёСЏ РєРѕР»Р»РёР·РёР№ СЃ РґСЂСѓРіРёРјРё РЅР°СЃС‚СЂРѕР№РєР°РјРё Django. РўР°РєРёРј РѕР±СЂР°Р·РѕРј, РІСЃРµ РЅР°СЃС‚СЂРѕР№РєРё РєРѕРЅС„РёРіСѓСЂР°С†РёРё РґР»СЏ Celery РґРѕР»Р¶РЅС‹ РЅР°С‡РёРЅР°С‚СЊСЃСЏ СЃ РїСЂРµС„РёРєСЃР° CELERY_.
+app.autodiscover_tasks() # РіРѕРІРѕСЂРёС‚ Celery РёСЃРєР°С‚СЊ Р·Р°РґР°РЅРёСЏ РёР· РїСЂРёР»РѕР¶РµРЅРёР№, РѕРїСЂРµРґРµР»РµРЅРЅС‹С… РІ settings.INSTALLED_APPS.
 
 @app.on_after_finalize.connect
 def setup_periodic_tasks(sender, **kwargs):
     from constance import config
-    # Настройка периодических задач
+    # РќР°СЃС‚СЂРѕР№РєР° РїРµСЂРёРѕРґРёС‡РµСЃРєРёС… Р·Р°РґР°С‡
     app.conf.beat_schedule = {
-        # Задача для отправки новостных email
+        # Р—Р°РґР°С‡Р° РґР»СЏ РѕС‚РїСЂР°РІРєРё РЅРѕРІРѕСЃС‚РЅС‹С… email
         'send_news_email': {
             'task': 'news.tasks.send_daily_email',
-            'schedule': crontab(second=config.EMAIL_SEND_TIME.second),
+            'schedule': crontab(seconds=config.EMAIL_SEND_TIME.second),
         }
     }
 
 
-# для тестов
+# РґР»СЏ С‚РµСЃС‚РѕРІ
 @app.task
 def add(x, y):
     return x / y

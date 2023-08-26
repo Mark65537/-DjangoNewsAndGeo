@@ -11,14 +11,14 @@ from .models import News
 def send_news_email():
     today = date.today()
 
-    # Получение новостей, опубликованных сегодня
-    news_published_today = News.objects.filter(publication_date__exact=today)
+    # РџРѕР»СѓС‡РµРЅРёРµ РЅРѕРІРѕСЃС‚РµР№, РѕРїСѓР±Р»РёРєРѕРІР°РЅРЅС‹С… СЃРµРіРѕРґРЅСЏ
+    news_published_today = News.objects.filter(created_at__exact=today)
     context = {
         'message': message,
         'news': news_published_today,
     }
 
-    # Генерация HTML-сообщения на основе шаблона и контекста
+    # Р“РµРЅРµСЂР°С†РёСЏ HTML-СЃРѕРѕР±С‰РµРЅРёСЏ РЅР° РѕСЃРЅРѕРІРµ С€Р°Р±Р»РѕРЅР° Рё РєРѕРЅС‚РµРєСЃС‚Р°
     email_message = render_to_string('daily_news_email.html', context)
 
     recipients = settings.CONSTANCE_CONFIG['EMAIL_RECIPIENTS']

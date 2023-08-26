@@ -1,6 +1,6 @@
-#если возникает ошибка
+#РµСЃР»Рё РІРѕР·РЅРёРєР°РµС‚ РѕС€РёР±РєР°
 #TypeError: clean() got an unexpected keyword argument 'styles'
-#нужно установить старую версию Bleach:
+#РЅСѓР¶РЅРѕ СѓСЃС‚Р°РЅРѕРІРёС‚СЊ СЃС‚Р°СЂСѓСЋ РІРµСЂСЃРёСЋ Bleach:
 #pip install bleach==3.3.1
 
 from django.contrib import admin

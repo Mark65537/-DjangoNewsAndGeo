@@ -1,0 +1,31 @@
+{% extends "site/layout.html" %}
+
+{% load static %}
+
+{% block title %}{{ item.title }}{% endblock %}
+
+{% block content %}
+
+    <div class="news mb-3">
+        <div class="card-body">
+            <div class="media">
+                {% if item.image %}
+                <img class="mr-3" src="{{ item.image.url }}" alt="">
+                {% else %}
+                <img class="mr-3" src="{% static 'images/common.png' %}" alt="">
+                {% endif %}
+                <div class="media-body">
+                    <h1 class="card-title">{{ item.title }}</h1>
+                    <h2 class="card-text">{{ item.description }}</h2>
+                    <a href="/" class="btn btn-primary">Назад</a>
+                    <a href="{% url 'update_news' item.pk %}" class="btn btn-primary">Изменить</a>
+                    <a href="{% url 'delete_news' item.pk %}" class="btn btn-primary">Удалить</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-muted">
+            {{ item.created_at|date:"Y-m-d H:i" }} / {{ item.author }}
+        </div>
+    </div>
+
+{% endblock %}

@@ -24,9 +24,9 @@
                         <img class="mr-3" src="{% static 'images/common.png' %}" alt="Неудается загрузить общее изображение">
                         {% endif %}
                         <div class="media-body">
-                            <h5 class="card-title">{{ item.title }}</h5>
-                            <p class="card-text">{{ item.description|truncatechars:255 }}</p>
-                            <a href="" class="btn btn-primary">Подробнее</a>
+                            <h3 class="card-title">{{ item.title }}</h3>
+                            <h4 class="card-text">{{ item.description|truncatechars:255 }}</h4>
+                            <a href="{% url 'detail_news' item.pk %}" class="btn btn-primary">Подробнее</a>
                             <a href="{% url 'update_news' item.pk %}" class="btn btn-primary">Изменить</a>
                             <a href="{% url 'delete_news' item.pk %}" class="btn btn-primary">Удалить</a>
                         </div>

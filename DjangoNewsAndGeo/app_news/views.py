@@ -25,6 +25,17 @@ class MainPage(generic.ListView):
         context = super().get_context_data(**kwargs)
         return context
 
+class DetailNews(generic.DetailView):
+    """Представление, отображающее определенную новость"""
+    model = News
+    template_name = 'site/detail_news.html'
+    context_object_name = 'item'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+
 
 class CreateNews(generic.CreateView):
     """Представление для создания новости"""

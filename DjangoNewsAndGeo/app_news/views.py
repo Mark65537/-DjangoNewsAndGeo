@@ -111,12 +111,3 @@ def about(request):
             'year':datetime.now().year,
         }
     )
-
-def geoindex(request):
-    return render(
-        request,
-        'site/geoindex.html',
-        {
-            'apikey': os.getenv('API_KEY')
-        }
-    )

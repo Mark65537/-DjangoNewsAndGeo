@@ -38,6 +38,9 @@
     <Compile Include="app_geo\admin.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="app_geo\forms.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app_geo\migrations\__init__.py" />
     <Compile Include="app_geo\models.py">
       <SubType>Code</SubType>
@@ -46,6 +49,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app_geo\views.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app_geo\widgets.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app_geo\__init__.py" />
@@ -89,9 +95,11 @@
   <ItemGroup>
     <Content Include="app_geo\templates\change_list.html" />
     <Content Include="app_geo\templates\geoindex.html" />
+    <Content Include="app_geo\templates\map_field.html" />
     <Content Include="app_news\templates\site\delete_news.html" />
     <Content Include="app_news\templates\site\detail_news.html" />
     <Content Include="app_news\templates\site\update_news.html" />
+    <Content Include="static\app\scripts\map.js" />
     <Content Include="static\images\big_items_icon.png" />
     <Content Include="static\images\common.png" />
     <Content Include="app_news\templates\site\create_news.html" />

@@ -1,3 +1,6 @@
+.. image:: https://img.shields.io/badge/django-%3E%3D%422.0-brightgreen.svg
+   :target: https://www.djangoproject.com/
+   :alt: Django badge
 # Описание
 
 # django-editor-ymaps

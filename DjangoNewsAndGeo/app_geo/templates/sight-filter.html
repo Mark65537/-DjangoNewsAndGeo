@@ -1,0 +1,13 @@
+
+<details data-filter-title="{{ title }}" open>
+    <summary>
+        {% blocktranslate with filter_title=title %} By {{ filter_title }} {% endblocktranslate %}
+    </summary>
+    <select onchange="window.location.href = this.value;">
+        {% for choice in choices %}
+        <option {% if choice.selected %} selected{% endif %} value="{{ choice.query_string|iriencode }}">
+            {{ choice.display }}
+            </option>
+            {% endfor %}
+    </select>
+</details>

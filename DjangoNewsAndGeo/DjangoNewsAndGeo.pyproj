@@ -57,8 +57,11 @@
     <Compile Include="DjangoNewsAndGeo\wsgi.py" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="app_geo\migrations\" />
+    <Folder Include="app_geo\templates\" />
     <Folder Include="app_news\" />
     <Folder Include="app_news\migrations\" />
+    <Folder Include="app_geo\" />
     <Folder Include="static\" />
     <Folder Include="static\app\" />
     <Folder Include="static\app\content\" />
@@ -72,6 +75,7 @@
   <ItemGroup>
     <Content Include="app_news\templates\site\delete_news.html" />
     <Content Include="app_news\templates\site\detail_news.html" />
+    <Content Include="app_news\templates\site\geoindex.html" />
     <Content Include="app_news\templates\site\update_news.html" />
     <Content Include="static\images\big_items_icon.png" />
     <Content Include="static\images\common.png" />

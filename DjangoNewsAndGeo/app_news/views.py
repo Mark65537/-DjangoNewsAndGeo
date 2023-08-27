@@ -2,6 +2,7 @@
 Definition of views.
 """
 
+import os
 from datetime import datetime
 
 from django.shortcuts import render
@@ -108,5 +109,14 @@ def about(request):
             'title':'About',
             'message':'Your application description page.',
             'year':datetime.now().year,
+        }
+    )
+
+def geoindex(request):
+    return render(
+        request,
+        'site/geoindex.html',
+        {
+            'apikey': os.getenv('API_KEY')
         }
     )

@@ -1,0 +1,24 @@
+{% extends "site/layout.html" %}
+
+{% load static %}
+
+{% block title %}Гео данные{% endblock %}
+
+{% block content %}
+
+<script src="https://api-maps.yandex.ru/2.1/?apikey={{ apikey }}&lang=ru_RU" type="text/javascript"></script>
+
+<!--изменить для аддаптивной верстки-->
+<div id="map" style="width: 1000px; height: 800px"></div>
+
+<!--без этого скрипта карта НЕ отображается-->
+<script>
+    ymaps.ready(function () {
+        var map = new ymaps.Map("map", {
+            center: [56.010569, 92.852572], // Координаты центра карты
+            zoom: 12 // Уровень масштабирования карты
+        });
+    });
+</script>
+
+{% endblock %}

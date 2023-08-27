@@ -87,6 +87,7 @@
     <Folder Include="DjangoNewsAndGeo\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app_geo\templates\change_list.html" />
     <Content Include="app_geo\templates\geoindex.html" />
     <Content Include="app_news\templates\site\delete_news.html" />
     <Content Include="app_news\templates\site\detail_news.html" />

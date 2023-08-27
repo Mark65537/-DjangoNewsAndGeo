@@ -34,7 +34,7 @@ ALLOWED_HOSTS = []
 # https://docs.djangoproject.com/en/2.1/ref/settings/#std:setting-INSTALLED_APPS
 INSTALLED_APPS = [
     'app_news',
-
+    'app_geo',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

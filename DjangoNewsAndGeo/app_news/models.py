@@ -26,3 +26,16 @@ class News(models.Model):
 
     def get_absolute_url(self):
         return reverse('index')
+
+class MyPanel(models.Model):
+    """Модель"""
+    pass
+
+    class Meta:
+        pass
+
+    def __str__(self):
+        pass
+
+    def get_absolute_url(self):
+        pass

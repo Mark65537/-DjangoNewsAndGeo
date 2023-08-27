@@ -35,6 +35,20 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="app_geo\admin.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app_geo\migrations\__init__.py" />
+    <Compile Include="app_geo\models.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app_geo\urls.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app_geo\views.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app_geo\__init__.py" />
     <Compile Include="app_news\admin.py">
       <SubType>Code</SubType>
     </Compile>
@@ -73,9 +87,9 @@
     <Folder Include="DjangoNewsAndGeo\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app_geo\templates\geoindex.html" />
     <Content Include="app_news\templates\site\delete_news.html" />
     <Content Include="app_news\templates\site\detail_news.html" />
-    <Content Include="app_news\templates\site\geoindex.html" />
     <Content Include="app_news\templates\site\update_news.html" />
     <Content Include="static\images\big_items_icon.png" />
     <Content Include="static\images\common.png" />

@@ -1,7 +1,7 @@
 
 <details data-filter-title="{{ title }}" open>
     <summary>
-        {% blocktranslate with filter_title=title %} By {{ filter_title }} {% endblocktranslate %}
+        By {{ filter_title }}
     </summary>
     <select onchange="window.location.href = this.value;">
         {% for choice in choices %}

@@ -1,4 +1,7 @@
 from django.contrib import admin
+from django.http import FileResponse
+
+from openpyxl import Workbook
 
 from .forms import SightAdminForm
 from .models import Sight, WeatherSummary
@@ -50,8 +53,8 @@ class WeatherSummaryAdmin(admin.ModelAdmin):
     def has_add_permission(self, request):
         return False
     
-    def has_delete_permission(self, request, obj=None):
-        return False
+    #def has_delete_permission(self, request, obj=None):
+    #    return False
 
     @admin.action(description="Экспортировать сводки погоды")
     def export_summaries(self, request, selected):

@@ -5,7 +5,7 @@
 
 from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin
-from .models import MyPanel, News
+from .models import News
 
 #admin.site.register(News)
 

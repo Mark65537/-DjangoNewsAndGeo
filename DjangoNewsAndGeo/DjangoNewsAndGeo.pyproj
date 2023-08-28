@@ -100,6 +100,7 @@
     <Content Include="app_geo\templates\geoindex.html" />
     <Content Include="app_geo\templates\map_field.html" />
     <Content Include="app_geo\templates\sight-filter.html" />
+    <Content Include="app_news\templates\daily_news_email.html" />
     <Content Include="app_news\templates\site\delete_news.html" />
     <Content Include="app_news\templates\site\detail_news.html" />
     <Content Include="app_news\templates\site\update_news.html" />

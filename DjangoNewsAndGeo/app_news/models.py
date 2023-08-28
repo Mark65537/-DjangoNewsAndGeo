@@ -9,11 +9,10 @@ from django_summernote.fields import SummernoteTextField
 class News(models.Model):
     """Модель новости"""
     title = models.CharField(max_length=200, verbose_name='Title')
-    #description = models.TextField(verbose_name='Description')
     description = SummernoteTextField()
     image = models.ImageField(upload_to='static\images', blank=True)
     author = author = models.CharField(max_length=100, default='Anonymous', verbose_name='Author')
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
@@ -26,16 +25,3 @@ class News(models.Model):
 
     def get_absolute_url(self):
         return reverse('index')
-
-class MyPanel(models.Model):
-    """Модель"""
-    pass
-
-    class Meta:
-        pass
-
-    def __str__(self):
-        pass
-
-    def get_absolute_url(self):
-        pass

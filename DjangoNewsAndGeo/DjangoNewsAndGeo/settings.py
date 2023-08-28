@@ -30,6 +30,8 @@ SECRET_KEY = '4c46e207-0009-4091-a89d-a6d9374e8a33'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+USE_TZ = False
+
 ALLOWED_HOSTS = []
 
 # Application references
@@ -213,6 +215,7 @@ CKEDITOR_CONFIGS = {
 # ( API-ключ используется в свободной и платной версиях.
 #   Получить ключ можно в кабинете разработчика - https://developer.tech.yandex.ru/ )
 DJEYM_YMAPS_API_KEY = os.getenv('API_KEY')
+DJEYM_WEATHER_API_KEY = os.getenv('WEATHER_API_KEY')
 
 # For paid use API --> True
 # ( Для платного использования --> True )

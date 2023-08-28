@@ -6,7 +6,7 @@
     <RootNamespace>DjangoNewsAndGeo</RootNamespace>
     <InterpreterId>Global|PythonCore|3.9</InterpreterId>
     <TestFramework>Pytest</TestFramework>
-    <WebBrowserPort>6380</WebBrowserPort>
+    <WebBrowserPort>8080</WebBrowserPort>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -43,6 +43,9 @@
     </Compile>
     <Compile Include="app_geo\migrations\__init__.py" />
     <Compile Include="app_geo\models.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app_geo\tasks.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app_geo\urls.py">

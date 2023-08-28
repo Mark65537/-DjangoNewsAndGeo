@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
-from datetime import timedelta
+from datetime import time, timedelta
 from celery.schedules import crontab
 from dotenv import load_dotenv
 
@@ -149,7 +149,8 @@ CONSTANCE_CONFIG = {
     'EMAIL_RECIPIENTS': ('test@mail.ru', 'Список адресатов через пробел'),
     'EMAIL_SUBJECT': ('Новости за сегодня', 'Тема сообщения'),
     'EMAIL_MESSAGE': ('Ознакомьтесь с последними новостями', 'Текст сообщения'),
-    'EMAIL_SEND_TIME': (timedelta(seconds=20), 'Время отправки'),
+    'EMAIL_SEND_TIME': (time(hour=6, minute=51), 'Время отправки'),
+    'WEATHER_FETCH_FREQUENCY': (1, 'Периодичность получения сводок погоды (в часах)'),
 }
 CONSTANCE_CONFIG_FIELDSETS = {
     'Настройки отправки email с новостями за день': ('EMAIL_RECIPIENTS', 'EMAIL_SUBJECT', 'EMAIL_MESSAGE', 'EMAIL_SEND_TIME'),
@@ -163,8 +164,14 @@ CELERY_RESULT_BACKEND = "redis://127.0.0.1:6379/0"  # URL бэкэнда для 
 CELERY_BEAT_SCHEDULE = { 
     'send_news_email_task': { 
         'task': 'app_news.tasks.send_news_email',
-        'schedule': crontab(minute="*/1"),
+        'schedule': 1.0,
     },
+    # Задача для получения погодных данных
+    'fetch_weather_data': {
+        'task': 'app_geo.tasks.fetch_weather_data',
+        'schedule': timedelta(hours=1),
+    },
+    
 }
 
 # Email config

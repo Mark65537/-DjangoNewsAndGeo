@@ -1,6 +1,6 @@
-.. image:: https://img.shields.io/badge/django-%3E%3D%422.0-brightgreen.svg
-   :target: https://www.djangoproject.com/
-   :alt: Django badge
+![Django](https://img.shields.io/badge/django-%3E%3D%204.0-brightgreen.svg?style=for-the-badge&logo=django&logoColor=white)
+![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white)
+![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white)
 # Описание
 
 # django-editor-ymaps

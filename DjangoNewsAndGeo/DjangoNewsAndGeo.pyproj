@@ -107,6 +107,7 @@
     <Content Include="app_news\templates\delete_news.html" />
     <Content Include="app_news\templates\detail_news.html" />
     <Content Include="app_news\templates\update_news.html" />
+    <Content Include="docker-compose.yml" />
     <Content Include="static\app\scripts\map.js" />
     <Content Include="static\images\big_items_icon.png" />
     <Content Include="static\images\common.png" />
@@ -141,11 +142,6 @@
     <Content Include="app_news\templates\layout.html" />
     <Content Include="app_news\templates\login.html" />
     <Content Include="app_news\templates\loginpartial.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="readme.html">
-      <SubType>WebBrowser</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|3.9" />

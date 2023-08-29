@@ -363,3 +363,4 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /DjangoNewsAndGeo/utilites/.vscode
+/DjangoNewsAndGeo/docker-compose.yml

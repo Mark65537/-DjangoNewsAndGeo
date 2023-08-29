@@ -22,7 +22,7 @@ class MainPage(generic.ListView):
     """Представление главной страницы, которая отображает список всех новостей"""
     model = News
     context_object_name = 'news_list'
-    template_name = 'site/index.html'
+    template_name = 'index.html'
     queryset = News.objects.all().order_by('-updated_at')
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -32,7 +32,7 @@ class MainPage(generic.ListView):
 class DetailNews(generic.DetailView):
     """Представление, отображающее определенную новость"""
     model = News
-    template_name = 'site/detail_news.html'
+    template_name = 'detail_news.html'
     context_object_name = 'item'
 
     def get_context_data(self, **kwargs):
@@ -45,7 +45,7 @@ class CreateNews(generic.CreateView):
     """Представление для создания новости"""
     model = News
     form_class = NewsForm
-    template_name = 'site/create_news.html'
+    template_name = 'create_news.html'
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -65,7 +65,7 @@ class UpdateNews(generic.UpdateView):
     """Представление, для обновления новости"""
     model = News
     form_class = NewsForm
-    template_name = 'site/update_news.html'
+    template_name = 'update_news.html'
 
     #override form_valid method
     def form_valid(self, form):
@@ -76,22 +76,16 @@ class UpdateNews(generic.UpdateView):
 class DeleteNews(generic.DeleteView):
     """Представление, для удаления новости"""
     model = News
-    template_name = 'site/delete_news.html'
+    template_name = 'delete_news.html'
     success_url = reverse_lazy('index') # здесь используется reverse_lazy, таким образом пользователь не будет перенаправлен до тех пор, пока представление не завершит удаление записи из базы данных.
 
-@csrf_exempt
-def run_task(request):
-    if request.POST:
-        task_type = request.POST.get("type")
-        task = send_news_email.delay(int(task_type))
-        return JsonResponse({"task_id": task.id}, status=202)
 
 def contact(request):
     """Renders the contact page."""
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'site/contact.html',
+        'contact.html',
         {
             'title':'Contact',
             'message':'Your contact page.',
@@ -104,7 +98,7 @@ def about(request):
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'site/about.html',
+        'about.html',
         {
             'title':'About',
             'message':'Your application description page.',

@@ -20,13 +20,11 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="{% url 'index' %}">Новости</a></li>
-                    <li><a href="{% url 'geoindex' %}">Геоданные</a></li>
                     <li><a href="{% url 'about' %}">О проекте</a></li>
                     <li><a href="{% url 'contact' %}">Контакты</a></li>
-                    <li><a href="/admin">admin</a></li><!--для тестов незабыть УДАЛИТЬ-->
-                    <li><a href="/admin">constance</a></li><!--для тестов незабыть УДАЛИТЬ-->
+                    <!--<li><a href="/admin">admin</a></li> для тестов-->
                 </ul>
-                {% include 'site/loginpartial.html' %}
+                {% include 'loginpartial.html' %}
             </div>
         </div>
     </div>

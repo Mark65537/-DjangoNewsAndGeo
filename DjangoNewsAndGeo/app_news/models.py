@@ -12,7 +12,7 @@ class News(models.Model):
     description = SummernoteTextField()
     image = models.ImageField(upload_to='static\images', blank=True)
     author = author = models.CharField(max_length=100, default='Anonymous', verbose_name='Author')
-    created_at = models.DateField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:

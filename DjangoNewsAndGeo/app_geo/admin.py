@@ -1,3 +1,5 @@
+import io
+
 from django.contrib import admin
 from django.http import FileResponse
 
@@ -53,8 +55,8 @@ class WeatherSummaryAdmin(admin.ModelAdmin):
     def has_add_permission(self, request):
         return False
     
-    #def has_delete_permission(self, request, obj=None):
-    #    return False
+    def has_delete_permission(self, request, obj=None):
+        return False
 
     @admin.action(description="Экспортировать сводки погоды")
     def export_summaries(self, request, selected):
@@ -74,5 +76,3 @@ class WeatherSummaryAdmin(admin.ModelAdmin):
         buffer.seek(0)
         # Возврат ответа в виде xslx-файла
         return FileResponse(buffer, as_attachment=True, filename='summaries.xlsx')
-
-#admin.site.register(Sight, SightAdmin)

@@ -7,6 +7,7 @@
     <InterpreterId>Global|PythonCore|3.9</InterpreterId>
     <TestFramework>Pytest</TestFramework>
     <WebBrowserPort>8080</WebBrowserPort>
+    <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -23,8 +24,11 @@
     <DjangoSettingsModule>DjangoNewsAndGeo.settings</DjangoSettingsModule>
     <OutputPath>.</OutputPath>
     <SuppressCollectPythonCloudServiceFiles>true</SuppressCollectPythonCloudServiceFiles>
-    <PythonRunWebServerCommandType />
+    <PythonRunWebServerCommandType>
+    </PythonRunWebServerCommandType>
     <PythonDebugWebServerCommandType />
+    <PythonRunWebServerCommand>
+    </PythonRunWebServerCommand>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -92,7 +96,6 @@
     <Folder Include="static\app\scripts\" />
     <Folder Include="static\images\" />
     <Folder Include="app_news\templates\" />
-    <Folder Include="app_news\templates\site\" />
     <Folder Include="DjangoNewsAndGeo\" />
   </ItemGroup>
   <ItemGroup>
@@ -101,13 +104,13 @@
     <Content Include="app_geo\templates\map_field.html" />
     <Content Include="app_geo\templates\sight-filter.html" />
     <Content Include="app_news\templates\daily_news_email.html" />
-    <Content Include="app_news\templates\site\delete_news.html" />
-    <Content Include="app_news\templates\site\detail_news.html" />
-    <Content Include="app_news\templates\site\update_news.html" />
+    <Content Include="app_news\templates\delete_news.html" />
+    <Content Include="app_news\templates\detail_news.html" />
+    <Content Include="app_news\templates\update_news.html" />
     <Content Include="static\app\scripts\map.js" />
     <Content Include="static\images\big_items_icon.png" />
     <Content Include="static\images\common.png" />
-    <Content Include="app_news\templates\site\create_news.html" />
+    <Content Include="app_news\templates\create_news.html" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
     <Content Include="static\app\content\bootstrap.css" />
@@ -132,12 +135,12 @@
     <Content Include="static\app\scripts\respond.js" />
     <Content Include="static\app\scripts\respond.min.js" />
     <Content Include="static\app\scripts\_references.js" />
-    <Content Include="app_news\templates\site\about.html" />
-    <Content Include="app_news\templates\site\contact.html" />
-    <Content Include="app_news\templates\site\index.html" />
-    <Content Include="app_news\templates\site\layout.html" />
-    <Content Include="app_news\templates\site\login.html" />
-    <Content Include="app_news\templates\site\loginpartial.html" />
+    <Content Include="app_news\templates\about.html" />
+    <Content Include="app_news\templates\contact.html" />
+    <Content Include="app_news\templates\index.html" />
+    <Content Include="app_news\templates\layout.html" />
+    <Content Include="app_news\templates\login.html" />
+    <Content Include="app_news\templates\loginpartial.html" />
   </ItemGroup>
   <ItemGroup>
     <None Include="readme.html">

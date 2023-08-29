@@ -18,7 +18,8 @@ def setup_periodic_tasks(sender, **kwargs):
         # Задача для отправки новостных email
         'send_news_email': {
             'task': 'app_news.tasks.send_daily_email',
-            'schedule': timedelta(seconds=1),
+            'schedule': crontab(hour=config.EMAIL_SEND_TIME.hour,
+                                minute=config.EMAIL_SEND_TIME.minute),
         },
         # Задача для получения погодных данных
         'fetch_weather_data': {

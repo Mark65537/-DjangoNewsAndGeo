@@ -9,3 +9,4 @@ python-dotenv
 django_summernote
 django-ckeditor
 openpyxl
+redis

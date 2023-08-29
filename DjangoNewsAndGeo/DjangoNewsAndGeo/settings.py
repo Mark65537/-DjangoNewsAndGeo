@@ -146,7 +146,7 @@ SUMMERNOTE_CONFIG = { 'iframe': True, 'summernote': { 'toolbar': [ ['style', ['s
 # Constance config
 CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend' 
 CONSTANCE_CONFIG = {
-    'EMAIL_RECIPIENTS': ('test@mail.ru', 'Список адресатов через пробел'),
+    'EMAIL_RECIPIENTS': ('grigorash-mark@mail.ru', 'Список адресатов через пробел'),
     'EMAIL_SUBJECT': ('Новости за сегодня', 'Тема сообщения'),
     'EMAIL_MESSAGE': ('Ознакомьтесь с последними новостями', 'Текст сообщения'),
     'EMAIL_SEND_TIME': (time(hour=6, minute=51), 'Время отправки'),
@@ -154,6 +154,7 @@ CONSTANCE_CONFIG = {
 }
 CONSTANCE_CONFIG_FIELDSETS = {
     'Настройки отправки email с новостями за день': ('EMAIL_RECIPIENTS', 'EMAIL_SUBJECT', 'EMAIL_MESSAGE', 'EMAIL_SEND_TIME'),
+    'Настройки сводок погоды': ('WEATHER_FETCH_FREQUENCY',),    
 }
 
 # Celery config
@@ -161,18 +162,18 @@ CELERY_BROKER_URL = "redis://127.0.0.1:6379/0"  # URL брокера сообщ�
 CELERY_RESULT_BACKEND = "redis://127.0.0.1:6379/0"  # URL бэкэнда для хранения результатов задач Celery
 
 # Дополнительные настройки Celery...
-CELERY_BEAT_SCHEDULE = { 
-    'send_news_email_task': { 
-        'task': 'app_news.tasks.send_news_email',
-        'schedule': 1.0,
-    },
-    # Задача для получения погодных данных
-    'fetch_weather_data': {
-        'task': 'app_geo.tasks.fetch_weather_data',
-        'schedule': timedelta(hours=1),
-    },
+# CELERY_BEAT_SCHEDULE = { 
+#     'send_news_email_task': { 
+#         'task': 'app_news.tasks.send_news_email',
+#         'schedule': 1.0,
+#     },
+#     # Задача для получения погодных данных
+#     'fetch_weather_data': {
+#         'task': 'app_geo.tasks.fetch_weather_data',
+#         'schedule': timedelta(hours=1),
+#     },
     
-}
+# }
 
 # Email config
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

@@ -1,6 +1,6 @@
-@REM celery -A DjangoNewsAndGeo worker --pool=solo --loglevel=info
+celery -A DjangoNewsAndGeo worker --pool=solo --loglevel=info
 
-del celerybeat.pid
+@REM del celerybeat.pid
 
-celery -A DjangoNewsAndGeo beat -l info
-@REM pause
+@REM celery -A DjangoNewsAndGeo beat -l info
+pause

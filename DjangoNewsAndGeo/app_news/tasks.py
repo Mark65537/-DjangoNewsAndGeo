@@ -35,6 +35,7 @@ def send_news_email():
         recipient_list=recipients,
         html_message=email_message,
         fail_silently=False,
+        auth_password=settings.EMAIL_HOST_PASSWORD
     )
 
 

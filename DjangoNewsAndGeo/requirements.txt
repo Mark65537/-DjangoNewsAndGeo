@@ -10,3 +10,4 @@ django_summernote
 django-ckeditor
 openpyxl
 redis
+djangorestframework

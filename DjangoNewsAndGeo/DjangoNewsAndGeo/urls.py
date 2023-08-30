@@ -1,7 +1,7 @@
 """
 Definition of urls for DjangoNewsAndGeo.
 """
-
+app_name = 'api'
 from datetime import datetime
 
 from django.urls import path, include
@@ -9,12 +9,17 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.contrib.auth.views import LoginView, LogoutView
 from django.views.decorators.cache import cache_page
+from rest_framework import routers
 
 from app_news import forms, views
-from app_news.views import CreateNews, DeleteNews, MainPage, UpdateNews, DetailNews
+from app_news.views import CreateNews, DeleteNews, MainPage, NewsViewSet, UpdateNews, DetailNews
+
+router = routers.DefaultRouter()
+router.register(r'news', NewsViewSet)
 
 urlpatterns = [
     path('', MainPage.as_view(), name='index'),
+    path('api/', include(router.urls, 'api'), namespace='api'),
     path('geoindex/', include('app_geo.urls')),
     path('<int:pk>/', DetailNews.as_view(), name='detail_news'),
     path('create_news/', cache_page(3600)(CreateNews.as_view()), name='create_news'),
@@ -25,7 +30,6 @@ urlpatterns = [
 
     #админка
     path('admin/', admin.site.urls),
-    #path('myadmin/', include('MyPanel.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('djeym/', include('djeym.urls', namespace='djeym')),
     path('summernote/', include('django_summernote.urls')),

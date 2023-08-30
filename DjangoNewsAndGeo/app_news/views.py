@@ -12,10 +12,11 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.core.files.storage import default_storage
 from django.urls import reverse_lazy
 from django.views.decorators.csrf import csrf_exempt
-
+from rest_framework import viewsets
 
 from app_news.forms import NewsForm
 from app_news.models import News
+from app_news.serializers import NewsSerializer
 from app_news.tasks import send_news_email
 
 class MainPage(generic.ListView):
@@ -39,8 +40,6 @@ class DetailNews(generic.DetailView):
         context = super().get_context_data(**kwargs)
         return context
 
-
-
 class CreateNews(generic.CreateView):
     """Представление для создания новости"""
     model = News
@@ -60,7 +59,6 @@ class CreateNews(generic.CreateView):
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
 
-
 class UpdateNews(generic.UpdateView):
     """Представление, для обновления новости"""
     model = News
@@ -72,13 +70,18 @@ class UpdateNews(generic.UpdateView):
         form.save()
         return super().form_valid(form)   
 
-
 class DeleteNews(generic.DeleteView):
     """Представление, для удаления новости"""
     model = News
     template_name = 'delete_news.html'
     success_url = reverse_lazy('index') # здесь используется reverse_lazy, таким образом пользователь не будет перенаправлен до тех пор, пока представление не завершит удаление записи из базы данных.
 
+class NewsViewSet(viewsets.ModelViewSet):
+    '''
+    Набор представлений для модели News
+    '''
+    queryset = News.objects.all()
+    serializer_class = NewsSerializer
 
 def contact(request):
     """Renders the contact page."""
